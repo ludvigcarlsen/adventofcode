@@ -283,7 +283,123 @@ def day4():
 def day5():
     print("\n--- Day 5: Hydrothermal Venture ---")
 
-    
+    ventData = []
+
+    with open("data/day5.txt") as file:
+        for line in file:
+            vent = line.strip().split(' -> ')
+            point1 = list(map(int, vent[0].split(',')))
+            point2 = list(map(int, vent[1].split(',')))
+
+            ventData.append([point1, point2])
+
+
+    def checkDanger(value):
+        return value == 2
+
+
+    def drawHorizontal(matrix, xs, xe, y):
+        dangerCount = 0
+
+        if xs > xe:
+            xs, xe = xe, xs
+
+        for x in range(xs, xe+1):
+            matrix[y][x] += 1
+            if (checkDanger(matrix[y][x])): dangerCount += 1
+        return dangerCount
+
+
+    def drawVertical(matrix, ys, ye, x):
+        dangerCount = 0
+
+        if ys > ye:
+            ys, ye = ye, ys
+
+        for y in range(ys, ye+1):
+            matrix[y][x] += 1
+            if (checkDanger(matrix[y][x])): dangerCount += 1
+        return dangerCount
+
+
+    def drawDiagonal(matrix, xs, ys, xe, ye):
+        dangerCount = 0
+        dir = 1
+
+        # Always start from left
+        if xs > xe:
+            xs, xe = xe, xs
+            ys, ye = ye, ys
+
+        # Decide if y should increase or decrease
+        if ys > ye:
+            dir = -1
+
+        x = xs
+        y = ys
+
+        for i in range(xs, xe+1):
+            matrix[y][x] += 1
+
+            if (checkDanger(matrix[y][x])): dangerCount += 1
+
+            x += 1
+            y += dir
+        return dangerCount
+
+
+    def puzzle1(matrix):
+        dangerCount = 0
+
+        for line in ventData:
+            x1 = line[0][0]
+            y1 = line[0][1]
+            x2 = line[1][0]
+            y2 = line[1][1]
+
+            # Vertical line
+            if x1 == x2:
+                dangerCount += drawVertical(matrix, y1, y2, x1)
+
+            # Horizontal line
+            elif y1 == y2:
+                dangerCount += drawHorizontal(matrix, x1, x2, y1)
+        return dangerCount
+
+
+    def puzzle2(matrix):
+        dangerCount = 0
+        for line in ventData:
+
+            x1 = line[0][0]
+            y1 = line[0][1]
+            x2 = line[1][0]
+            y2 = line[1][1]
+
+            # Vertical line
+            if x1 == x2:
+                dangerCount += drawVertical(matrix, y1, y2, x1)
+
+            # Horizontal line
+            elif y1 == y2:
+                dangerCount += drawHorizontal(matrix, x1, x2, y1)
+
+            # Diagonal (from left to right)
+            elif abs(x1-x2) == abs(y1-y2):
+                dangerCount += drawDiagonal(matrix, x1, y1, x2, y2)
+        return dangerCount
+
+
+    size = 1000
+    ventDiagram1 = [[0 for col in range(size)] for row in range(size)]
+    ventDiagram2 = [row[:] for row in ventDiagram1]
+
+    dangerCount1 = puzzle1(ventDiagram1)
+    dangerCount2 = puzzle2(ventDiagram2)
+
+
+    print(f"5.1. The number of dangerous points is {dangerCount1}")
+    print(f"5.2. The number of dangerous points is {dangerCount2}")
 
 
 
