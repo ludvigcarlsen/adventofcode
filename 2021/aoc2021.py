@@ -44,6 +44,10 @@ def day1():
             increases += 1
 
     print(f"1.2. Number of increases: {increases}")
+    depths = list()
+    with open("data/day1.txt") as file:
+        for line in file:
+            depths.append(int(line))
 
 
 def day2():
@@ -402,14 +406,104 @@ def day5():
     print(f"5.2. The number of dangerous points is {dangerCount2}")
 
 
+def day6():
+    print("\n--- Day 6: Lanternfish ---")
+
+    data = []
+
+    with open("data/day6.txt") as file:
+        content = file.read()
+        numbers = content.split(',')
+        data = list(map(int, numbers))
+
+
+    def simulate(fishes, days):
+        for d in range(0, days):
+            for f in range(0, len(fishes)):
+
+
+                # Fish timer has reached 0
+                if not fishes[f]:
+                    fishes[f] = 6
+                    fishes.append(8)
+
+                else:
+                    fishes[f] -= 1
+        return len(fishes)
+
+
+    def count_fishes(fishes, days):
+        print(fishes)
+        fish_counts = [fishes.count(i) for i in range(9)]
+
+        for day in range(days):
+            fish_reproducing = fish_counts[0]
+            fish_counts[0] = 0
+            for i in range(8):
+                fish_counts[i] = fish_counts[i+1]
+            fish_counts[8] = fish_reproducing
+            fish_counts[6] += fish_reproducing
+
+        return sum(fish_counts)
+
+
+    print(f"6.1. There are {simulate(data[:], 80)} lanternfish after {80} days")
+    print(f"6.2. There are {count_fishes(data, 256)} lanternfish after {256} days")
+
+
+def day7():
+    print("\n--- Day 7: The Treachery of Whales ---")
+
+    data = []
+    exampleData = [16,1,2,0,4,2,7,1,2,14]
+
+    with open("data/day7.txt") as file:
+        content = file.read()
+        numbers = content.split(',')
+        data = list(map(int, numbers))
+
+
+    def puzzle1(data):
+
+        lowestFuel = float('inf')
+        highestPos = max(data)
+
+        for pos in range(1, highestPos):
+            fuelCost = sum(abs(crab-pos) for crab in data)
+            lowestFuel = min(lowestFuel, fuelCost)
+
+        return lowestFuel
+
+
+    def puzzle2(data):
+
+        lowestFuel = float('inf')
+        highestPos = max(data)
+
+        for pos in range(1, highestPos):
+            fuelCost = 0
+            for crab in data:
+                steps = abs(crab-pos)
+                fuelCost += (steps * (steps+1)) / 2
+
+            lowestFuel = min(lowestFuel, fuelCost)
+        return lowestFuel
+
+    print(puzzle1(data))
+    print(puzzle2(data))
+
+
+
+
 
 def main():
     #day1()
     #day2()
     #day3()
     #day4()
-    day5()
-
+    #day5()
+    #day6()
+    day7()
 
 
 if __name__ == "__main__":
