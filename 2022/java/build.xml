@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<project name="asp" default="jar">
+<project name="aoc" default="jar">
 
   <target name="clean" description="Remove generated files">
     <delete dir="classes"/>
-    <delete file="asp.jar"/>
-    <delete file="asp.zip"/>
+    <delete file="aoc.jar"/>
+    <delete file="aoc.zip"/>
   </target>
 
   <target name="compile" description="compile">
@@ -15,7 +15,7 @@
   </target>
 
   <target name="jar" depends="compile" description="Create jar file">
-    <jar destfile="asp.jar">
+    <jar destfile="aoc.jar">
       <fileset dir="classes" includes="**/*.class"/>
       <manifest>
 	<attribute name="Main-Class" value="main.Main"/>
