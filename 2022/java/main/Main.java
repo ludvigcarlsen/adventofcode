@@ -1,17 +1,19 @@
 package main;
 
-import main.Day;
-
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import days.*;
+import java.util.*;
 
 public class Main {    
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException, InvocationTargetException, NoSuchMethodException {
-        
-        for (int day = 1; day < 3; day++) {
-            System.out.println(String.format("Day %s:", day));
-            Day d = (Day) Class.forName("days.Day" + day).getDeclaredConstructor().newInstance();
-            d.printParts();
+    public static void main(String[] args) {
+        List<Day> days = Arrays.asList (
+                new Day1(),
+                new Day2(),
+                new Day3()
+        );
+
+        for (Day day : days) {
+            System.out.println(String.format("Day %s:", day.day));
+            day.printParts();
             System.out.println();
         }
     }    
