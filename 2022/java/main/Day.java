@@ -7,11 +7,11 @@ import java.io.FileNotFoundException;
 
 public abstract class Day {
     protected final int day;
-    protected final String inputPath;
+    protected final List<String> input;
 
     public Day(int day) {
         this.day = day;
-        this.inputPath = String.format("main/data/day%s.txt", day);
+        this.input = this.inputStrings();
     }
 
     public Object part1() {
@@ -29,9 +29,10 @@ public abstract class Day {
     
     protected List<String> inputStrings() {
         List<String> data = null;
+        String path = String.format("main/data/day%s.txt", this.day);
 
         try {
-            Path p = Paths.get(this.inputPath);
+            Path p = Paths.get(path);
             data = Files.readAllLines(p);
         }
 
@@ -41,10 +42,9 @@ public abstract class Day {
 
 
     protected ArrayList<Integer> inputIntegers() {
-        List<String> raw = this.inputStrings();
         ArrayList<Integer> data = new ArrayList<Integer>();
             
-        for (String s : raw) {
+        for (String s : this.input) {
             try { data.add(Integer.parseInt(s)); }
             catch (NumberFormatException e) { }
         }
@@ -54,11 +54,10 @@ public abstract class Day {
 
 
     protected ArrayList<Integer> inputSumBlanks() {
-        List<String> raw = this.inputStrings();
         ArrayList<Integer> data = new ArrayList<Integer>();
         int sum = 0;
 
-        for (String s : raw) {
+        for (String s : this.input) {
             try { sum += Integer.parseInt(s); }
 
             catch (NumberFormatException e) {
@@ -68,17 +67,5 @@ public abstract class Day {
         }
 
         return data;
-    }
-
-
-    protected Scanner getInput() {
-        Scanner s = null;
-        try {
-            s = new Scanner(new File(this.inputPath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return s;
     }
 }

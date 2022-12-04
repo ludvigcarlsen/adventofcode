@@ -8,7 +8,8 @@ public class Main {
         List<Day> days = Arrays.asList (
                 new Day1(),
                 new Day2(),
-                new Day3()
+                new Day3(),
+                new Day4()
         );
 
         for (Day day : days) {
