@@ -68,4 +68,25 @@ public abstract class Day {
 
         return data;
     }
+
+
+    protected ArrayList<List<String>> inputStringsBlanks() {
+        ArrayList<List<String>> data = new ArrayList<List<String>>();
+        int prev = 0;
+
+        for (int i = 0; i < input.size(); i++) {
+            String line = input.get(i);
+            // Skip unless blank line
+            if (!line.trim().isEmpty()) continue;
+            
+            // Create list from prev until current blank
+            data.add(input.subList(prev, i));
+            prev = i + 1; 
+        }
+        
+        // Add remaining lines from prev to end
+        data.add(input.subList(prev, input.size()));
+
+        return data;
+    } 
 }
