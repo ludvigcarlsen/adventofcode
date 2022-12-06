@@ -88,5 +88,10 @@ public abstract class Day {
         data.add(input.subList(prev, input.size()));
 
         return data;
-    } 
+    }
+
+
+    protected String inputSingleString() {
+        return String.join("", input);
+    }
 }
