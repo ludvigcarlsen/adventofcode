@@ -11,7 +11,8 @@ public class Main {
                 new Day3(),
                 new Day4(),
                 new Day5(),
-                new Day6()
+                new Day6(),
+                new Day7()
         );
 
         for (Day day : days) {
