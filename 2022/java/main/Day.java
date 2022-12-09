@@ -94,4 +94,18 @@ public abstract class Day {
     protected String inputSingleString() {
         return String.join("", input);
     }
+
+
+    protected List<List<Integer>> inputIntegerMatrix() {
+        List<List<Integer>> data = new ArrayList<List<Integer>>();
+
+        for (String s : input) {
+            List<Integer> seq = new ArrayList<Integer>();
+            String[] nums = s.split("");
+            for (String n : nums)
+                seq.add(Integer.parseInt(n));
+            data.add(seq);
+        }
+        return data;
+    }
 }
