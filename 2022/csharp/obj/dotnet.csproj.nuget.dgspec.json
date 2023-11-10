@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ludvigmc/Case/adventofcode/2022/dotnet/dotnet.csproj": {}
+    "/Users/ludvigmc/Case/adventofcode/2022/csharp/dotnet.csproj": {}
   },
   "projects": {
-    "/Users/ludvigmc/Case/adventofcode/2022/dotnet/dotnet.csproj": {
+    "/Users/ludvigmc/Case/adventofcode/2022/csharp/dotnet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ludvigmc/Case/adventofcode/2022/dotnet/dotnet.csproj",
+        "projectUniqueName": "/Users/ludvigmc/Case/adventofcode/2022/csharp/dotnet.csproj",
         "projectName": "dotnet",
-        "projectPath": "/Users/ludvigmc/Case/adventofcode/2022/dotnet/dotnet.csproj",
+        "projectPath": "/Users/ludvigmc/Case/adventofcode/2022/csharp/dotnet.csproj",
         "packagesPath": "/Users/ludvigmc/.nuget/packages/",
-        "outputPath": "/Users/ludvigmc/Case/adventofcode/2022/dotnet/obj/",
+        "outputPath": "/Users/ludvigmc/Case/adventofcode/2022/csharp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ludvigmc/.nuget/NuGet/NuGet.Config"
