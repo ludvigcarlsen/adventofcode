@@ -7,9 +7,11 @@ import java.util.List;
 
 public abstract class Day {
     private Integer day;
+    private String title;
 
-    public Day(Integer day) {
+    public Day(Integer day, String title) {
         this.day = day;
+        this.title = title;
     }
 
     public abstract Object task1();
@@ -27,6 +29,6 @@ public abstract class Day {
 
     @Override
     public String toString() {
-        return "%s\n%s\n".formatted(task1(), task2());
+        return "--- Day %s: %s ---\nPart 1: %s\nPart 2: %s\n".formatted(day, title, task1(), task2());
     }
 }
