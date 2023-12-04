@@ -42,7 +42,6 @@ public class Day3 extends Day {
 
     @Override
     public Object task2() {
-
         Map<Pair, ArrayList<Integer>> potentialGears = new HashMap<>();
         List<Entry> entries = new ArrayList<>();
         Pattern p = Pattern.compile("\\d+");
